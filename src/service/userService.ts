@@ -1,6 +1,6 @@
 import { query } from "../config/database"
 import bcrypt from "bcryptjs"
-import { User } from "../types/user.types"
+import { User, userRole } from "../types/user.types"
 
 
 export const findUserByEmail = async (email: string ): Promise<User | null > =>{
@@ -8,12 +8,14 @@ export const findUserByEmail = async (email: string ): Promise<User | null > =>{
     return rows[0] || null;
 };
 
-export const createUser = async(email: string, password: string): Promise<User> => {
+export const createUser = async(email: string, password: string,name: string, role: string): Promise<User> => {
     const salt = await bcrypt.genSalt(10);
-    const password_has = await bcrypt.hash(password,salt);
+    const password_hash = await bcrypt.hash(password,salt);
 
     const { rows } = await query(
-        'INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id ,email',
+        'INSERT INTO users (email, password_hash,name, role) VALUES ($1, $2,$3,$4) RETURNING id ,email,name,role',
+        [email,password_hash,role,name]
+
     );
     return rows[0];
 };
