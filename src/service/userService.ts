@@ -7,11 +7,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
   return rows[0] || null;
 };
 
-export const createUser = async (
-  email: string,
-  password: string,
-  name: string,
-  role: string,
+export const createUser = async (email: string,password: string,name: string,role: string,
 ): Promise<User> => {
   const salt = await bcrypt.genSalt(10);
   const password_hash = await bcrypt.hash(password, salt);

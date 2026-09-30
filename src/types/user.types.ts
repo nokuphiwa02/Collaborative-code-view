@@ -1,3 +1,5 @@
+import { project } from "./project.types";
+
 export type userRole = 'Review'| 'Submitter';
 
 export interface User{
@@ -7,3 +9,4 @@ export interface User{
     role: userRole;
     password_hash: string;
 }
+

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { testDbConnection } from "./config/database";
 import authRoutes from './routes/authoRoutes'
+import projectRoutes from "./routes/projectRoutes"
 
 
 dotenv.config();
@@ -12,7 +13,8 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   await testDbConnection();
   app.use(express.json());
-  app.use("/api", authRoutes);
+  app.use("/api/users", authRoutes);
+  app.use("/api",projectRoutes)
 
   testDbConnection();
   app.listen(PORT, () => {
