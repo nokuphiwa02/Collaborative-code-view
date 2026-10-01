@@ -20,7 +20,7 @@ export const findAllProject = async (): Promise<project[]> => {
 
 export const assignMembersToProject = async (memberId: number, projectId: number) :Promise<project | null> =>{
     const {rows } = await query(
-        `UPDATE projects SET assigned_members = array_append(assigned_members, $1) WHERE id = $2 RETURNING *`,
+        `UPDATE projects SET assigned_members = array_append(COALESCE(assigned_members, '{}'), $1)  WHERE id = $2 RETURNING *`,
         [memberId, projectId]
     );
     return rows[0] || null  
