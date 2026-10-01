@@ -6,6 +6,6 @@ const router = Router();
 
 router.post("/projects", addProject);
 router.get("/projects", getAllProjects);
-router.put("/:Id/members", assignMembersToProject)
+router.post("/projects/:id/members", assignMembersToProject);
 
 export default router;
