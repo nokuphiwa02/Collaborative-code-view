@@ -15,12 +15,13 @@ export const addProject = async (req: Request, res: Response) => {
 
 export const assignMembersToProject = async (req: Request, res: Response) => {
     try{
-        const {Id } = req.params;
+        const {id } = req.params;
         const { userId } = req.body;
 
-        const project = await projectService.assignMembersToProject(Number(Id), userId);
+        const project = await projectService.assignMembersToProject(Number(id), userId);
 
-        res.status(201).json({message:"user assigned to prject successfully"});
+        res.status(201).json(project);
+        
 
     }catch(error){
         console.error("Error assigning member to project:", error);
