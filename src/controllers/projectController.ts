@@ -18,7 +18,7 @@ export const assignMembersToProject = async (req: Request, res: Response) => {
         const {id } = req.params;
         const { userId } = req.body;
 
-        const project = await projectService.assignMembersToProject(Number(id), userId);
+        const project = await projectService.assignMembersToProject(userId,Number(id));
 
         res.status(201).json(project);
         
