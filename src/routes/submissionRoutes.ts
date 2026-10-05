@@ -4,7 +4,7 @@ import { addSubmissions, getSubmissionsByProject, deleteSubmissionById } from ".
 const router = Router();
 
 router.post("/submissions",addSubmissions);
-router.get("/submission/:id/projects",getSubmissionsByProject);
+router.get("/:id/submissions",getSubmissionsByProject);
 router.delete('/submissions/:id',deleteSubmissionById);
 
 export default router;
