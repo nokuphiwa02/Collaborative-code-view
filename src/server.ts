@@ -17,6 +17,7 @@ const startServer = async () => {
   app.use("/api/auth", authRoutes);
   app.use("/api",projectRoutes);
   app.use("/api",submissionRoutes);
+  app.use("api/submissions", submissionRoutes);
 
   testDbConnection();
   app.listen(PORT, () => {
