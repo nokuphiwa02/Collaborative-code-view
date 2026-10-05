@@ -5,7 +5,8 @@ import { submission,NewSubmission,submission_status } from "../types/submission.
 export const createSubmission = async (appData: NewSubmission): Promise<submission> => {
     const { projectId, code_status } = appData;
     const { rows } = await query(
-      `INSERT INTO code_submissions(projectId, code_status)VALUES($1,$2)RETURNING *`,
+      `INSERT INTO code_submissions(projectId,submitted_at, code_status)
+      VALUES($1, NOW(), $2)RETURNING *`,
       [projectId, code_status],
     );
     return rows[0];
